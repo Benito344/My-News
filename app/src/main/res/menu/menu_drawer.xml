@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/activity_main_drawer_topstories"
+            android:title="@string/dm_topStories" />
+        <item
+            android:id="@+id/activity_main_drawer_mostpopular"
+            android:title="@string/dm_mostPopular"/>
+    </group>
+    <item android:title="@string/dm_Category">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/activity_main_drawer_arts"
+                    android:title="@string/dm_Arts" />
+                <item
+                    android:id="@+id/activity_main_drawer_business"
+                    android:title="@string/dm_Business" />
+                <item
+                    android:id="@+id/activity_main_drawer_entrepreneurs"
+                    android:title="@string/dm_Entrepreneurs" />
+                <item
+                    android:id="@+id/activity_main_drawer_politics"
+                    android:title="@string/dm_Politics" />
+                <item
+                    android:id="@+id/activity_main_drawer_sports"
+                    android:title="@string/dm_Sports" />
+                <item
+                    android:id="@+id/activity_main_drawer_travel"
+                    android:title="@string/dm_Travels" />
+            </group>
+        </menu>
+    </item>
+</menu>
