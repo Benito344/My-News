@@ -26,4 +26,7 @@
     <string name="dm_Politics">@string/cb_Politics</string>
     <string name="dm_Sports">@string/cb_Sports</string>
     <string name="dm_Travels">@string/cb_Travels</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
