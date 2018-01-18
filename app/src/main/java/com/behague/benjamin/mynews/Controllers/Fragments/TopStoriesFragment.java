@@ -3,6 +3,7 @@ package com.behague.benjamin.mynews.Controllers.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,7 +15,9 @@ import com.behague.benjamin.mynews.Models.TopStories.TopStoriesMultimedia;
 import com.behague.benjamin.mynews.Models.TopStories.TopStoriesResult;
 import com.behague.benjamin.mynews.R;
 import com.behague.benjamin.mynews.Utils.NYTStreams;
+import com.behague.benjamin.mynews.Views.TopStoriesAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -32,6 +35,8 @@ public class TopStoriesFragment extends Fragment {
 
     private Disposable disposable;
 
+    private TopStoriesAdapter topStorieAdapter;
+
     private List<TopStoriesMain> topStoriesMain;
     private List<TopStoriesResult> topStoriesResults;
     private List<TopStoriesMultimedia> topStoriesMultimedia;
@@ -46,6 +51,7 @@ public class TopStoriesFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_top_stories, container, false);
         ButterKnife.bind(this, view);
+        this.initRecyclerView();
         this.executeHttpRequest();
         return view;
     }
@@ -54,6 +60,13 @@ public class TopStoriesFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         this.disposeWhenDestroy();
+    }
+
+    private void initRecyclerView(){
+        this.topStoriesResults = new ArrayList<>();
+        this.topStorieAdapter = new TopStoriesAdapter(this.topStoriesResults);
+        this.recyclerView.setAdapter(this.topStorieAdapter);
+        this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
     private void executeHttpRequest(){
@@ -83,7 +96,7 @@ public class TopStoriesFragment extends Fragment {
     }
 
     private void updateList(List<TopStoriesResult> topList){
-
+        topStorieAdapter.notifyDataSetChanged();
     }
 }
 
