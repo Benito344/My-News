@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.behague.benjamin.mynews.Models.TopStories.TopStoriesResult;
 import com.behague.benjamin.mynews.R;
+import com.bumptech.glide.RequestManager;
 
 import java.util.List;
 
@@ -18,9 +19,11 @@ import java.util.List;
 public class TopStoriesAdapter extends RecyclerView.Adapter<TopStoriesViewHolder> {
 
     private List<TopStoriesResult> topStoriesList;
+    private RequestManager glide;
 
-    public TopStoriesAdapter(List<TopStoriesResult> topStoriesList){
+    public TopStoriesAdapter(List<TopStoriesResult> topStoriesList, RequestManager glide){
         this.topStoriesList = topStoriesList;
+        this.glide = glide;
     }
 
     @Override
@@ -33,7 +36,7 @@ public class TopStoriesAdapter extends RecyclerView.Adapter<TopStoriesViewHolder
 
     @Override
     public void onBindViewHolder(TopStoriesViewHolder viewHolder, int position){
-        viewHolder.updateDatas(this.topStoriesList.get(position));
+        viewHolder.updateDatas(this.topStoriesList.get(position), this.glide);
     }
 
     @Override

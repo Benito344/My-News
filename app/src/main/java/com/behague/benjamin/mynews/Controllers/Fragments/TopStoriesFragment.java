@@ -16,6 +16,7 @@ import com.behague.benjamin.mynews.Models.TopStories.TopStoriesResult;
 import com.behague.benjamin.mynews.R;
 import com.behague.benjamin.mynews.Utils.NYTStreams;
 import com.behague.benjamin.mynews.Views.TopStoriesAdapter;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +65,7 @@ public class TopStoriesFragment extends Fragment {
 
     private void initRecyclerView(){
         this.topStoriesResults = new ArrayList<>();
-        this.topStorieAdapter = new TopStoriesAdapter(this.topStoriesResults);
+        this.topStorieAdapter = new TopStoriesAdapter(this.topStoriesResults, Glide.with(this));
         this.recyclerView.setAdapter(this.topStorieAdapter);
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
