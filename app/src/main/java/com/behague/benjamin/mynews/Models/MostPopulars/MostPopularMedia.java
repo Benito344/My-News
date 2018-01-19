@@ -17,7 +17,7 @@ public class MostPopularMedia {
     private String caption;
     @SerializedName("media-metadata")
     @Expose
-    private List<MediaMetadata> mediaMetadata = null;
+    private List<MostPopularMediaMetadata> mediaMetadata = null;
 
     public String getCaption() {
         return caption;
@@ -27,11 +27,11 @@ public class MostPopularMedia {
         this.caption = caption;
     }
 
-    public List<MediaMetadata> getMediaMetadata() {
+    public List<MostPopularMediaMetadata> getMediaMetadata() {
         return mediaMetadata;
     }
 
-    public void setMediaMetadata(List<MediaMetadata> mediaMetadata) {
+    public void setMediaMetadata(List<MostPopularMediaMetadata> mediaMetadata) {
         this.mediaMetadata = mediaMetadata;
     }
 

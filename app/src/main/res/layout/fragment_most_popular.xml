@@ -7,21 +7,10 @@
     tools:context="com.behague.benjamin.mynews.Controllers.Fragments.MostPopularFragment"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="#EDD9CF">
-
-    <TextView
-        android:id="@+id/fragment_page_most_popular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dip"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:textColor="#fff"
-        android:textAlignment="center"
-        android:text="MOST POPULAR"/>
+    android:background="#FFF">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
+        android:id="@+id/recycler_view_most"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical" />
