@@ -14,6 +14,7 @@ import com.behague.benjamin.mynews.Models.TopStories.TopStoriesMain;
 import com.behague.benjamin.mynews.Models.TopStories.TopStoriesResult;
 import com.behague.benjamin.mynews.R;
 import com.behague.benjamin.mynews.Utils.NYTStreams;
+import com.behague.benjamin.mynews.Views.ItemClickRecyclerView;
 import com.behague.benjamin.mynews.Views.TopStoriesAdapter;
 import com.bumptech.glide.Glide;
 
@@ -51,6 +52,7 @@ public class TopStoriesFragment extends Fragment {
         ButterKnife.bind(this, view);
         this.initRecyclerView();
         this.executeHttpRequest();
+        this.configureOnClickRecyclerView();
         return view;
     }
 
@@ -86,7 +88,18 @@ public class TopStoriesFragment extends Fragment {
                 Log.e("TAG", "Completed");
             }
         });
-        }
+    }
+
+    private void configureOnClickRecyclerView(){
+        ItemClickRecyclerView.addTo(recyclerView, R.layout.fragment_top_stories)
+                .setOnItemClickListener(new ItemClickRecyclerView.OnItemClickListener(){
+                    @Override
+                    public void onItemClicked(RecyclerView recyclerView, int position, View v){
+                        String URL = topStorieAdapter.getURL(position);
+                        Log.e("TAG", URL);
+                    }
+                });
+    }
 
     private void disposeWhenDestroy(){
 

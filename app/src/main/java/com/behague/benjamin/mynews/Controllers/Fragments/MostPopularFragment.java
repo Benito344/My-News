@@ -14,6 +14,7 @@ import com.behague.benjamin.mynews.Models.MostPopulars.MostPopularMain;
 import com.behague.benjamin.mynews.Models.MostPopulars.MostPopularResult;
 import com.behague.benjamin.mynews.R;
 import com.behague.benjamin.mynews.Utils.NYTStreams;
+import com.behague.benjamin.mynews.Views.ItemClickRecyclerView;
 import com.behague.benjamin.mynews.Views.MostPopularAdapter;
 import com.bumptech.glide.Glide;
 
@@ -50,6 +51,7 @@ public class MostPopularFragment extends Fragment {
         ButterKnife.bind(this,view);
         this.initRecyclerView();
         this.executeHttpRequest();
+        this.configureOnClickRecyclerView();
         return view;
     }
 
@@ -79,6 +81,17 @@ public class MostPopularFragment extends Fragment {
                 Log.e("TAG","Completed");
             }
         });
+    }
+
+    private void configureOnClickRecyclerView(){
+        ItemClickRecyclerView.addTo(RecyclerView, R.layout.fragment_top_stories)
+                .setOnItemClickListener(new ItemClickRecyclerView.OnItemClickListener(){
+                    @Override
+                    public void onItemClicked(RecyclerView recyclerView, int position, View v){
+                        String URL = mostPopularAdapter.getUrl(position);
+                        Log.e("TAG", URL);
+                    }
+                });
     }
 
     @Override

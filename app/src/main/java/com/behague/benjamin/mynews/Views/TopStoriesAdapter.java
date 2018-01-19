@@ -43,4 +43,8 @@ public class TopStoriesAdapter extends RecyclerView.Adapter<TopStoriesViewHolder
     public int getItemCount(){
         return this.topStoriesList.size();
     }
+
+    public String getURL(int position){
+        return this.topStoriesList.get(position).getUrl();
+    }
 }

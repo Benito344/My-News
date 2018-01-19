@@ -44,4 +44,8 @@ public class MostPopularAdapter extends RecyclerView.Adapter<MostPopularViewHold
     public int getItemCount(){
         return mostPopularList.size();
     }
+
+    public String getUrl (int position){
+        return this.mostPopularList.get(position).getUrl();
+    }
 }
