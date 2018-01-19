@@ -5,13 +5,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.behague.benjamin.mynews.Models.TopStories.TopStoriesMultimedia;
 import com.behague.benjamin.mynews.Models.TopStories.TopStoriesResult;
 import com.behague.benjamin.mynews.R;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,15 +35,21 @@ public class TopStoriesViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void updateDatas (TopStoriesResult topStories, RequestManager glide){
+
         if(topStories.getSubsection().isEmpty()){
             this.section.setText(topStories.getSection());
         } else {
             String section = topStories.getSection() + " > " + topStories.getSubsection();
             this.section.setText(section);
         }
+
+        if(topStories.getMultimedia().size() > 0){
+            glide.load(topStories.getMultimedia().get(0).getUrl()).apply(RequestOptions.centerCropTransform()).into(image);
+            image.setContentDescription(topStories.getMultimedia().get(0).getCaption());
+        }
+
         this.title.setText(topStories.getTitle());
         this.date.setText(dateTreatement(topStories.getPublishedDate()));
-        glide.load(topStories.getMultimedia().get(0).getUrl()).apply(RequestOptions.centerCropTransform()).into(image);
     }
 
     public String dateTreatement (String date){

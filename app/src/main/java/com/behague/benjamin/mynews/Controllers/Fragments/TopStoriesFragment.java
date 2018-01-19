@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.behague.benjamin.mynews.Models.TopStories.TopStoriesMain;
-import com.behague.benjamin.mynews.Models.TopStories.TopStoriesMultimedia;
 import com.behague.benjamin.mynews.Models.TopStories.TopStoriesResult;
 import com.behague.benjamin.mynews.R;
 import com.behague.benjamin.mynews.Utils.NYTStreams;
@@ -38,9 +37,7 @@ public class TopStoriesFragment extends Fragment {
 
     private TopStoriesAdapter topStorieAdapter;
 
-    private List<TopStoriesMain> topStoriesMain;
     private List<TopStoriesResult> topStoriesResults;
-    private List<TopStoriesMultimedia> topStoriesMultimedia;
 
     public static TopStoriesFragment newInstance() {
         return (new TopStoriesFragment());
@@ -76,7 +73,7 @@ public class TopStoriesFragment extends Fragment {
             @Override
             public void onNext(TopStoriesMain topStories){
                 topStoriesResults.addAll(topStories.getResults());
-                updateList(topStoriesResults);
+                updateList();
             }
 
             @Override
@@ -96,7 +93,7 @@ public class TopStoriesFragment extends Fragment {
         if (this.disposable != null && !this.disposable.isDisposed()) this.disposable.dispose();
     }
 
-    private void updateList(List<TopStoriesResult> topList){
+    private void updateList(){
         topStorieAdapter.notifyDataSetChanged();
     }
 }
