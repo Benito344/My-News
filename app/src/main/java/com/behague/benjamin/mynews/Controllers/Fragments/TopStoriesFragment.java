@@ -1,6 +1,7 @@
 package com.behague.benjamin.mynews.Controllers.Fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.behague.benjamin.mynews.Controllers.Activities.WebViewActivity;
 import com.behague.benjamin.mynews.Models.TopStories.TopStoriesMain;
 import com.behague.benjamin.mynews.Models.TopStories.TopStoriesResult;
 import com.behague.benjamin.mynews.R;
@@ -96,7 +98,9 @@ public class TopStoriesFragment extends Fragment {
                     @Override
                     public void onItemClicked(RecyclerView recyclerView, int position, View v){
                         String URL = topStorieAdapter.getURL(position);
-                        Log.e("TAG", URL);
+                        Intent webViewActivity = new Intent(getContext(), WebViewActivity.class);
+                        webViewActivity.putExtra("URL", URL);
+                        getContext().startActivity(webViewActivity);
                     }
                 });
     }
