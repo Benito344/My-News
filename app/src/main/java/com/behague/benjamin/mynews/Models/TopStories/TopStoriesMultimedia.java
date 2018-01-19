@@ -14,6 +14,12 @@ public class TopStoriesMultimedia {
     @SerializedName("caption")
     @Expose
     private String caption;
+    @SerializedName("height")
+    @Expose
+    private Integer height;
+    @SerializedName("width")
+    @Expose
+    private Integer width;
 
     public String getUrl() {
         return url;
@@ -29,6 +35,22 @@ public class TopStoriesMultimedia {
 
     public void setCaption(String caption) {
         this.caption = caption;
+    }
+
+    public Integer getHeight() {
+        return height;
+    }
+
+    public void setHeight(Integer height) {
+        this.height = height;
+    }
+
+    public Integer getWidth() {
+        return width;
+    }
+
+    public void setWidth(Integer width) {
+        this.width = width;
     }
 
 }

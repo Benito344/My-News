@@ -1,5 +1,6 @@
 package com.behague.benjamin.mynews.Utils;
 
+import com.behague.benjamin.mynews.Models.MostPopulars.MostPopularMain;
 import com.behague.benjamin.mynews.Models.TopStories.TopStoriesMain;
 
 import java.util.List;
@@ -17,11 +18,10 @@ import retrofit2.http.Path;
 
 public interface NYTService {
 
-    /*@GET("svc/topstories/v2/home.json?api-key={API_KEY}")
-    Observable<List<TopStoriesMain>> getTopStories(@Path("API_KEY") String api_key);*/
-
     @GET("svc/topstories/v2/home.json?api-key=f61e15b5379341758307c696363f35f9")
             Observable<TopStoriesMain> getTopStories();
+    @GET("svc/mostpopular/v2/mostviewed/all-sections/7.json?api-key=f61e15b5379341758307c696363f35f9")
+            Observable<MostPopularMain> getMostPopular();
 
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("https://api.nytimes.com/")

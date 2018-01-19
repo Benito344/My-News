@@ -1,6 +1,7 @@
 package com.behague.benjamin.mynews.Utils;
 
 
+import com.behague.benjamin.mynews.Models.MostPopulars.MostPopularMain;
 import com.behague.benjamin.mynews.Models.TopStories.TopStoriesMain;
 
 import java.util.List;
@@ -17,18 +18,22 @@ import io.reactivex.schedulers.Schedulers;
 
 public class NYTStreams {
 
-    private static final String API_KEY = "f61e15b5379341758307c696363f35f9";
-
     public static Observable<TopStoriesMain> streamTopStories(){
         NYTService nytService = NYTService.retrofit.create(NYTService.class);
-/*        return nytService.getTopStories(API_KEY)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .timeout(5, TimeUnit.SECONDS);*/
+
         return nytService.getTopStories()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .timeout(5, TimeUnit.SECONDS);
+                .timeout(100, TimeUnit.SECONDS);
+    }
+
+    public static Observable<MostPopularMain> streamMostPopular(){
+        NYTService nytService = NYTService.retrofit.create(NYTService.class);
+
+        return nytService.getMostPopular()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .timeout(100,TimeUnit.SECONDS);
     }
 
 }

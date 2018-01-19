@@ -36,6 +36,10 @@ public class TopStoriesViewHolder extends RecyclerView.ViewHolder {
 
     public void updateDatas (TopStoriesResult topStories, RequestManager glide){
 
+        final int heightImage = 75;
+        final int widthImage = 75;
+        int sizeMultimedia = topStories.getMultimedia().size();
+
         if(topStories.getSubsection().isEmpty()){
             this.section.setText(topStories.getSection());
         } else {
@@ -43,9 +47,16 @@ public class TopStoriesViewHolder extends RecyclerView.ViewHolder {
             this.section.setText(section);
         }
 
-        if(topStories.getMultimedia().size() > 0){
-            glide.load(topStories.getMultimedia().get(0).getUrl()).apply(RequestOptions.centerCropTransform()).into(image);
-            image.setContentDescription(topStories.getMultimedia().get(0).getCaption());
+        if(sizeMultimedia > 0){
+                for (int i = 0 ; i<sizeMultimedia ; i++){
+                        if(topStories.getMultimedia().get(i).getHeight().equals(heightImage) &&
+                                topStories.getMultimedia().get(i).getWidth().equals(widthImage)){
+
+                            glide.load(topStories.getMultimedia().get(0).getUrl())
+                                    .apply(RequestOptions.centerCropTransform()).into(image);
+                            image.setContentDescription(topStories.getMultimedia().get(0).getCaption());
+                        }
+                }
         }
 
         this.title.setText(topStories.getTitle());
