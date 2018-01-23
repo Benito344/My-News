@@ -2,6 +2,7 @@ package com.behague.benjamin.mynews.Utils;
 
 
 import com.behague.benjamin.mynews.Models.MostPopulars.MostPopularMain;
+import com.behague.benjamin.mynews.Models.SearchArticles.SearchArticlesMain;
 import com.behague.benjamin.mynews.Models.TopStories.TopStoriesMain;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class NYTStreams {
         return nytService.getTopStories()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .timeout(100, TimeUnit.SECONDS);
+                .timeout(5, TimeUnit.SECONDS);
     }
 
     public static Observable<MostPopularMain> streamMostPopular(){
@@ -33,7 +34,16 @@ public class NYTStreams {
         return nytService.getMostPopular()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .timeout(100,TimeUnit.SECONDS);
+                .timeout(5,TimeUnit.SECONDS);
     }
 
+    public static Observable<SearchArticlesMain> streamSearchArticles(String term, String beginDate,
+                                                                      String endDate, String section){
+        NYTService nytService = NYTService.retrofit.create(NYTService.class);
+
+        return nytService.getSearchArticle(term, beginDate, endDate, section, true)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .timeout(500,TimeUnit.SECONDS);
+    }
 }

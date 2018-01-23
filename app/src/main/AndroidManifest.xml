@@ -36,6 +36,8 @@
         </activity>
         <activity android:name=".Controllers.Activities.WebViewActivity">
         </activity>
+        <activity android:name=".Controllers.Activities.SearchResultsActivity">
+        </activity>
     </application>
 
 </manifest>
