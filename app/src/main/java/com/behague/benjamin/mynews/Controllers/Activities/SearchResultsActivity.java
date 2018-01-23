@@ -1,10 +1,12 @@
 package com.behague.benjamin.mynews.Controllers.Activities;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.behague.benjamin.mynews.R;
@@ -27,8 +29,20 @@ public class SearchResultsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_results);
         ButterKnife.bind(this);
+        this.configureToolbar();
         this.initRecyclerView();
         this.configureOnClickRecyclerView();
+    }
+
+    private void configureToolbar(){
+        //Get the toolbar (Serialise)
+        Toolbar toolbar = findViewById(R.id.toolbarSearch);
+        //Set the toolbar
+        setSupportActionBar(toolbar);
+        // Get a support ActionBar corresponding to this toolbar
+        ActionBar ab = getSupportActionBar();
+        // Enable the Up button
+        ab.setDisplayHomeAsUpEnabled(true);
     }
 
     public void initRecyclerView(){

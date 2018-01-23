@@ -57,7 +57,9 @@ public class SearchResultsViewHolder extends RecyclerView.ViewHolder {
         }
 
         this.title.setText(searchDocs.getHeadline().getMain());
-        this.date.setText(dateTreatement(searchDocs.getPubDate()));
+        if(searchDocs.getPubDate() != null){
+            this.date.setText(dateTreatement(searchDocs.getPubDate()));
+        }
     }
 
     public String dateTreatement (String date){

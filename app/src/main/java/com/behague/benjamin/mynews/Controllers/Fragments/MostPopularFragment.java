@@ -34,7 +34,7 @@ import io.reactivex.observers.DisposableObserver;
 public class MostPopularFragment extends Fragment {
 
     @BindView(R.id.recycler_view_most)
-    RecyclerView RecyclerView;
+    RecyclerView recyclerView;
 
     private Disposable disposable;
 
@@ -60,8 +60,8 @@ public class MostPopularFragment extends Fragment {
     private void initRecyclerView(){
         this.mostPopularResults = new ArrayList<>();
         this.mostPopularAdapter = new MostPopularAdapter(this.mostPopularResults, Glide.with(this));
-        this.RecyclerView.setAdapter(this.mostPopularAdapter);
-        this.RecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        this.recyclerView.setAdapter(this.mostPopularAdapter);
+        this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
     private void executeHttpRequest(){
@@ -86,7 +86,7 @@ public class MostPopularFragment extends Fragment {
     }
 
     private void configureOnClickRecyclerView(){
-        ItemClickRecyclerView.addTo(RecyclerView, R.layout.fragment_top_stories)
+        ItemClickRecyclerView.addTo(recyclerView, R.layout.fragment_top_stories)
                 .setOnItemClickListener(new ItemClickRecyclerView.OnItemClickListener(){
                     @Override
                     public void onItemClicked(RecyclerView recyclerView, int position, View v){

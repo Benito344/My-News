@@ -18,6 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
         <activity
             android:name=".Controllers.Activities.SearchActivity"
             android:label="Search Articles"
@@ -26,6 +27,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Controllers.Activities.MainActivity"/>
         </activity>
+
         <activity
             android:name=".Controllers.Activities.NotificationActivity"
             android:label="Notifications"
@@ -34,9 +36,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Controllers.Activities.MainActivity"/>
         </activity>
+
         <activity android:name=".Controllers.Activities.WebViewActivity">
         </activity>
-        <activity android:name=".Controllers.Activities.SearchResultsActivity">
+
+        <activity android:name=".Controllers.Activities.SearchResultsActivity"
+                  android:label="Search Articles"
+                  android:parentActivityName=".Controllers.Activities.SearchActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Controllers.Activities.SearchActivity"/>
         </activity>
     </application>
 
