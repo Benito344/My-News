@@ -19,7 +19,6 @@ import com.behague.benjamin.mynews.Models.SearchArticles.SearchArticlesMain;
 import com.behague.benjamin.mynews.R;
 import com.behague.benjamin.mynews.Utils.NYTStreams;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -41,7 +40,6 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     private String inputEndDate;
     private int mYear, mMonth, mDay;
     private CheckBox [] checkBoxs;
-
 
     @BindView(R.id.activity_edit_box_sn) EditText terms;
     @BindView(R.id.cb_Arts) CheckBox arts;
@@ -84,10 +82,16 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                     }
                 }
 
-                if(inputTerms.isEmpty() || inputBeginDate.isEmpty() ||
-                        inputEndDate.isEmpty() || sectionsChecked.length() == 0){
+                if(inputTerms.isEmpty() || sectionsChecked.length() == 0
+                        || inputBeginDate.isEmpty() != inputEndDate.isEmpty()){
                     Toast.makeText(SearchActivity.this, "Please enter all the information",Toast.LENGTH_SHORT).show();
-                } else {
+                }
+                else if(!inputTerms.isEmpty() && sectionsChecked.length( )> 0
+                        && inputBeginDate.isEmpty() && inputEndDate.isEmpty()){
+                    searchArticlesDoc = new ArrayList<>();
+                    SearchActivity.this.executeHttpRequestWithoutDate();
+                }
+                else {
                     searchArticlesDoc = new ArrayList<>();
                     SearchActivity.this.executeHttpRequest();
                 }
@@ -183,8 +187,6 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         String beginDate = inputBeginDate.replace("/", "");
         String endDate = inputEndDate.replace("/", "");
 
-        Log.e("TAG", finalSections);
-
         this.disposable = NYTStreams.streamSearchArticles(inputTerms, beginDate
                 , endDate, finalSections).subscribeWith(new DisposableObserver<SearchArticlesMain>(){
 
@@ -198,6 +200,38 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                     Intent searchResultsActivity = new Intent(SearchActivity.this, SearchResultsActivity.class);
                     startActivity(searchResultsActivity);
                     }
+            }
+
+            @Override
+            public void onError(Throwable e){
+                Log.e("TAG", e.getMessage());
+            }
+
+            @Override
+            public void onComplete(){
+                Log.e("TAG","Completed");
+            }
+        });
+    }
+
+    private void executeHttpRequestWithoutDate(){
+
+        sectionsChecked = sectionsChecked.deleteCharAt(sectionsChecked.length()-1);
+        String finalSections = sectionsChecked.toString();
+
+        this.disposable = NYTStreams.streamSearchArticlesWhitoutDate(inputTerms, finalSections)
+                .subscribeWith(new DisposableObserver<SearchArticlesMain>(){
+
+            @Override
+            public void onNext(SearchArticlesMain searchArticlesMain){
+                if(searchArticlesMain.getResponse().getDocs().isEmpty()){
+                    Log.e("TAG", "Empty");
+                }
+                else{
+                    searchArticlesDoc.addAll(searchArticlesMain.getResponse().getDocs());
+                    Intent searchResultsActivity = new Intent(SearchActivity.this, SearchResultsActivity.class);
+                    startActivity(searchResultsActivity);
+                }
             }
 
             @Override

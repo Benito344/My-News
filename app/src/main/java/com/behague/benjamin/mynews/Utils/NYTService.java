@@ -25,6 +25,9 @@ public interface NYTService {
             Observable<SearchArticlesMain> getSearchArticle(@Query("q") String term, @Query("begin_date") String beginDate,
                                                             @Query("end_date") String endDate, @Query("fq=section_name:") String section,
                                                             @Query("facet_filter") boolean ff);
+    @GET("svc/search/v2/articlesearch.json?api-key=f61e15b5379341758307c696363f35f9")
+    Observable<SearchArticlesMain> getSearchArticleWhitoutDate(@Query("q") String term, @Query("fq=section_name:") String section,
+                                                    @Query("facet_filter") boolean ff);
 
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("https://api.nytimes.com/")

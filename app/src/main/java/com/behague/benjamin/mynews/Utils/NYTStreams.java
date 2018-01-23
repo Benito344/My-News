@@ -46,4 +46,13 @@ public class NYTStreams {
                 .observeOn(AndroidSchedulers.mainThread())
                 .timeout(500,TimeUnit.SECONDS);
     }
+
+    public static Observable<SearchArticlesMain> streamSearchArticlesWhitoutDate(String term, String section){
+        NYTService nytService = NYTService.retrofit.create(NYTService.class);
+
+        return nytService.getSearchArticleWhitoutDate(term, section, true)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .timeout(500,TimeUnit.SECONDS);
+    }
 }
