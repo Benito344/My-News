@@ -101,17 +101,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (id){
             case R.id.activity_main_drawer_topstories:
                 newItem = 0;
-                viewPager.setCurrentItem(newItem);
                 break;
 
             case R.id.activity_main_drawer_mostpopular:
                 newItem = 1;
-                viewPager.setCurrentItem(newItem);
+                break;
+
+            case R.id.activity_main_drawer_sports:
+                newItem = 2;
                 break;
 
             default:
                 newItem = 0;
-                viewPager.setCurrentItem(newItem);
                 break;
         }
 

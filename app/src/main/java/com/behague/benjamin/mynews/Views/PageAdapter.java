@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.behague.benjamin.mynews.Controllers.Fragments.MostPopularFragment;
+import com.behague.benjamin.mynews.Controllers.Fragments.SportsFragment;
 import com.behague.benjamin.mynews.Controllers.Fragments.TopStoriesFragment;
 
 /**
@@ -20,7 +21,7 @@ public class PageAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return (2); // 3 - Number of page to show
+        return (3); // 3 - Number of page to show
     }
 
     @Override
@@ -30,6 +31,8 @@ public class PageAdapter extends FragmentPagerAdapter {
                 return TopStoriesFragment.newInstance();
             case 1: //Page number 2
                 return MostPopularFragment.newInstance();
+            case 2 :
+                return SportsFragment.newInstance();
             default:
                 return null;
         }
@@ -42,6 +45,8 @@ public class PageAdapter extends FragmentPagerAdapter {
                 return "Top Stories";
             case 1: //Page number 2
                 return "Most Popular";
+            case 2 :
+                return "Sports";
             default:
                 return null;
         }
