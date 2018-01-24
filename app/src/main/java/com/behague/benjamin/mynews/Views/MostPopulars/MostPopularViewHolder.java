@@ -1,7 +1,6 @@
-package com.behague.benjamin.mynews.Views;
+package com.behague.benjamin.mynews.Views.MostPopulars;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,8 +9,6 @@ import com.behague.benjamin.mynews.Models.MostPopulars.MostPopularResult;
 import com.behague.benjamin.mynews.R;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

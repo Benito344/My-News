@@ -1,4 +1,4 @@
-package com.behague.benjamin.mynews.Views;
+package com.behague.benjamin.mynews.Views.TopStories;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -30,7 +30,7 @@ public class TopStoriesAdapter extends RecyclerView.Adapter<TopStoriesViewHolder
     public TopStoriesViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View v = inflater.inflate(R.layout.top_stories_recyclerview_item, parent, false);
+        View v = inflater.inflate(R.layout.recyclerview_item, parent, false);
         return new TopStoriesViewHolder(v);
     }
 

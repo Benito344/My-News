@@ -1,4 +1,4 @@
-package com.behague.benjamin.mynews.Views;
+package com.behague.benjamin.mynews.Views.TopStories;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
