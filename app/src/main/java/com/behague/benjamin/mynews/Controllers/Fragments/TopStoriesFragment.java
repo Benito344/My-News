@@ -17,7 +17,7 @@ import com.behague.benjamin.mynews.Models.TopStories.TopStoriesResult;
 import com.behague.benjamin.mynews.R;
 import com.behague.benjamin.mynews.Utils.NYTStreams;
 import com.behague.benjamin.mynews.Views.ItemClickRecyclerView;
-import com.behague.benjamin.mynews.Views.TopStoriesAdapter;
+import com.behague.benjamin.mynews.Views.TopStories.TopStoriesAdapter;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;

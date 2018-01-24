@@ -11,7 +11,7 @@ import android.view.View;
 
 import com.behague.benjamin.mynews.R;
 import com.behague.benjamin.mynews.Views.ItemClickRecyclerView;
-import com.behague.benjamin.mynews.Views.SearchResultsAdapter;
+import com.behague.benjamin.mynews.Views.SearchResults.SearchResultsAdapter;
 import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
