@@ -1,12 +1,11 @@
-package com.behague.benjamin.mynews.Utils;
+package com.behague.benjamin.mynews.utils;
 
 
-import com.behague.benjamin.mynews.Models.MostPopulars.MostPopularMain;
-import com.behague.benjamin.mynews.Models.SearchArticles.SearchArticlesMain;
-import com.behague.benjamin.mynews.Models.Sports.SportsMain;
-import com.behague.benjamin.mynews.Models.TopStories.TopStoriesMain;
+import com.behague.benjamin.mynews.models.MostPopulars.MostPopularMain;
+import com.behague.benjamin.mynews.models.SearchArticles.SearchArticlesMain;
+import com.behague.benjamin.mynews.models.Sports.SportsMain;
+import com.behague.benjamin.mynews.models.TopStories.TopStoriesMain;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;

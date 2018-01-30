@@ -1,4 +1,4 @@
-package com.behague.benjamin.mynews.Controllers.Fragments;
+package com.behague.benjamin.mynews.controllers.Fragments;
 
 
 import android.content.Intent;
@@ -11,13 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.behague.benjamin.mynews.Controllers.Activities.WebViewActivity;
-import com.behague.benjamin.mynews.Models.MostPopulars.MostPopularMain;
-import com.behague.benjamin.mynews.Models.MostPopulars.MostPopularResult;
+import com.behague.benjamin.mynews.controllers.activities.WebViewActivity;
+import com.behague.benjamin.mynews.models.MostPopulars.MostPopularMain;
+import com.behague.benjamin.mynews.models.MostPopulars.MostPopularResult;
 import com.behague.benjamin.mynews.R;
-import com.behague.benjamin.mynews.Utils.NYTStreams;
-import com.behague.benjamin.mynews.Views.ItemClickRecyclerView;
-import com.behague.benjamin.mynews.Views.MostPopulars.MostPopularAdapter;
+import com.behague.benjamin.mynews.utils.NYTStreams;
+import com.behague.benjamin.mynews.views.ItemClickRecyclerView;
+import com.behague.benjamin.mynews.views.MostPopulars.MostPopularAdapter;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;

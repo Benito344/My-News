@@ -1,4 +1,4 @@
-package com.behague.benjamin.mynews.Models.Sports;
+package com.behague.benjamin.mynews.models.TopStories;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by Benjamin BEHAGUE on 16/01/2018.
  */
-public class SportsMultimedia {
+public class TopStoriesMultimedia {
 
     @SerializedName("url")
     @Expose

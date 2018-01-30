@@ -1,4 +1,4 @@
-package com.behague.benjamin.mynews.Controllers.Fragments;
+package com.behague.benjamin.mynews.controllers.Fragments;
 
 
 import android.content.Intent;
@@ -11,13 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.behague.benjamin.mynews.Controllers.Activities.WebViewActivity;
-import com.behague.benjamin.mynews.Models.TopStories.TopStoriesMain;
-import com.behague.benjamin.mynews.Models.TopStories.TopStoriesResult;
+import com.behague.benjamin.mynews.controllers.activities.WebViewActivity;
+import com.behague.benjamin.mynews.models.Sports.SportsMain;
+import com.behague.benjamin.mynews.models.Sports.SportsResult;
 import com.behague.benjamin.mynews.R;
-import com.behague.benjamin.mynews.Utils.NYTStreams;
-import com.behague.benjamin.mynews.Views.ItemClickRecyclerView;
-import com.behague.benjamin.mynews.Views.TopStories.TopStoriesAdapter;
+import com.behague.benjamin.mynews.utils.NYTStreams;
+import com.behague.benjamin.mynews.views.ItemClickRecyclerView;
+import com.behague.benjamin.mynews.views.Sports.SportsAdapter;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -31,31 +31,37 @@ import io.reactivex.observers.DisposableObserver;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TopStoriesFragment extends Fragment {
+public class SportsFragment extends Fragment {
 
-    @BindView(R.id.recycler_view)
+    @BindView(R.id.recycler_view_sports)
     RecyclerView recyclerView;
 
     private Disposable disposable;
 
-    private TopStoriesAdapter topStorieAdapter;
+    private SportsAdapter sportsAdapter;
 
-    private List<TopStoriesResult> topStoriesResults;
+    private List<SportsResult> sportsResults;
 
-    public static TopStoriesFragment newInstance() {
-        return (new TopStoriesFragment());
+    public static SportsFragment newInstance() {
+        return (new SportsFragment());
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_top_stories, container, false);
-        ButterKnife.bind(this, view);
+        View view = inflater.inflate(R.layout.fragment_sports, container, false);
+        ButterKnife.bind(this,view);
         this.initRecyclerView();
         this.executeHttpRequest();
         this.configureOnClickRecyclerView();
         return view;
+    }
+
+    private void initRecyclerView(){
+        this.sportsResults = new ArrayList<>();
+        this.sportsAdapter = new SportsAdapter(this.sportsResults, Glide.with(this));
+        this.recyclerView.setAdapter(this.sportsAdapter);
+        this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
     @Override
@@ -64,19 +70,12 @@ public class TopStoriesFragment extends Fragment {
         this.disposeWhenDestroy();
     }
 
-    private void initRecyclerView(){
-        this.topStoriesResults = new ArrayList<>();
-        this.topStorieAdapter = new TopStoriesAdapter(this.topStoriesResults, Glide.with(this));
-        this.recyclerView.setAdapter(this.topStorieAdapter);
-        this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-    }
-
     private void executeHttpRequest(){
-        this.disposable = NYTStreams.streamTopStories().subscribeWith(new DisposableObserver<TopStoriesMain>() {
+        this.disposable = NYTStreams.streamSports().subscribeWith(new DisposableObserver<SportsMain>() {
 
             @Override
-            public void onNext(TopStoriesMain topStories){
-                topStoriesResults.addAll(topStories.getResults());
+            public void onNext(SportsMain sports){
+                sportsResults.addAll(sports.getResults());
                 updateList();
             }
 
@@ -97,7 +96,7 @@ public class TopStoriesFragment extends Fragment {
                 .setOnItemClickListener(new ItemClickRecyclerView.OnItemClickListener(){
                     @Override
                     public void onItemClicked(RecyclerView recyclerView, int position, View v){
-                        String URL = topStorieAdapter.getURL(position);
+                        String URL = sportsAdapter.getURL(position);
                         Intent webViewActivity = new Intent(getContext(), WebViewActivity.class);
                         webViewActivity.putExtra("URL", URL);
                         getContext().startActivity(webViewActivity);
@@ -106,13 +105,11 @@ public class TopStoriesFragment extends Fragment {
     }
 
     private void disposeWhenDestroy(){
-
         if (this.disposable != null && !this.disposable.isDisposed()) this.disposable.dispose();
     }
 
     private void updateList(){
-        topStorieAdapter.notifyDataSetChanged();
+        sportsAdapter.notifyDataSetChanged();
     }
+
 }
-
-

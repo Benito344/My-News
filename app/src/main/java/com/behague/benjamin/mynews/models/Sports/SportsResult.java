@@ -1,4 +1,4 @@
-package com.behague.benjamin.mynews.Models.TopStories;
+package com.behague.benjamin.mynews.models.Sports;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by Benjamin BEHAGUE on 16/01/2018.
  */
-public class TopStoriesResult {
+public class SportsResult {
 
     @SerializedName("section")
     @Expose
@@ -45,7 +45,7 @@ public class TopStoriesResult {
     private List<Object> geoFacet = null;
     @SerializedName("multimedia")
     @Expose
-    private List<TopStoriesMultimedia> multimedia = null;
+    private List<SportsMultimedia> multimedia = null;
 
     public String getSection() {
         return section;
@@ -135,11 +135,11 @@ public class TopStoriesResult {
         this.geoFacet = geoFacet;
     }
 
-    public List<TopStoriesMultimedia> getMultimedia() {
+    public List<SportsMultimedia> getMultimedia() {
         return multimedia;
     }
 
-    public void setMultimedia(List<TopStoriesMultimedia> topStoriesMultimedia) {
+    public void setMultimedia(List<SportsMultimedia> topStoriesMultimedia) {
         this.multimedia = topStoriesMultimedia;
     }
 

@@ -1,11 +1,10 @@
-package com.behague.benjamin.mynews.Models.Sports;
+package com.behague.benjamin.mynews.models.TopStories;
 
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
-public class SportsMain {
+public class TopStoriesMain {
 
     @SerializedName("status")
     @Expose
@@ -15,7 +14,7 @@ public class SportsMain {
     private Integer numResults;
     @SerializedName("results")
     @Expose
-    private List<SportsResult> results = null;
+    private List<TopStoriesResult> results = null;
 
     public String getStatus() {
         return status;
@@ -33,11 +32,11 @@ public class SportsMain {
         this.numResults = numResults;
     }
 
-    public List<SportsResult> getResults() {
+    public List<TopStoriesResult> getResults() {
         return results;
     }
 
-    public void setResults(List<SportsResult> topStoriesResults) {
+    public void setResults(List<TopStoriesResult> topStoriesResults) {
         this.results = topStoriesResults;
     }
 

@@ -1,6 +1,8 @@
-package com.behague.benjamin.mynews.Controllers.Activities;
+package com.behague.benjamin.mynews.controllers.activities;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -14,10 +16,10 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.behague.benjamin.mynews.Models.SearchArticles.SearchArticlesDoc;
-import com.behague.benjamin.mynews.Models.SearchArticles.SearchArticlesMain;
+import com.behague.benjamin.mynews.models.SearchArticles.SearchArticlesDoc;
+import com.behague.benjamin.mynews.models.SearchArticles.SearchArticlesMain;
 import com.behague.benjamin.mynews.R;
-import com.behague.benjamin.mynews.Utils.NYTStreams;
+import com.behague.benjamin.mynews.utils.NYTStreams;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -25,12 +27,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 
 public class SearchActivity extends AppCompatActivity implements View.OnClickListener {
-
-    private Disposable disposable;
 
     public static List<SearchArticlesDoc> searchArticlesDoc;
 
@@ -89,10 +88,12 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 else if(!inputTerms.isEmpty() && sectionsChecked.length( )> 0
                         && inputBeginDate.isEmpty() && inputEndDate.isEmpty()){
                     searchArticlesDoc = new ArrayList<>();
+                    validateSearch.setEnabled(false);
                     SearchActivity.this.executeHttpRequestWithoutDate();
                 }
                 else {
                     searchArticlesDoc = new ArrayList<>();
+                    validateSearch.setEnabled(false);
                     SearchActivity.this.executeHttpRequest();
                 }
 
@@ -108,7 +109,9 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
         // Enable the Up button
-        ab.setDisplayHomeAsUpEnabled(true);
+        if(ab != null){
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override
@@ -183,16 +186,25 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     private void executeHttpRequest(){
 
         sectionsChecked = sectionsChecked.deleteCharAt(sectionsChecked.length()-1);
-        String finalSections = sectionsChecked.toString();
+
         String beginDate = inputBeginDate.replace("/", "");
         String endDate = inputEndDate.replace("/", "");
 
-        this.disposable = NYTStreams.streamSearchArticles(inputTerms, beginDate
-                , endDate, finalSections).subscribeWith(new DisposableObserver<SearchArticlesMain>(){
+        NYTStreams.streamSearchArticles(inputTerms, beginDate
+                , endDate, sectionsChecked.toString()).subscribeWith(new DisposableObserver<SearchArticlesMain>(){
 
             @Override
             public void onNext(SearchArticlesMain searchArticlesMain){
                 if(searchArticlesMain.getResponse().getDocs().isEmpty()){
+                    AlertDialog.Builder popUp = new AlertDialog.Builder(SearchActivity.this);
+                    popUp.setTitle("Sorry")
+                            .setMessage("No result found ! ")
+                            .setNeutralButton("Retry", new DialogInterface.OnClickListener(){
+                                public void onClick(DialogInterface dialog, int which){
+                                        validateSearch.setEnabled(true);
+                                }
+                            })
+                            .show();
                     Log.e("TAG", "Empty");
                 }
                 else{
@@ -204,11 +216,13 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
             @Override
             public void onError(Throwable e){
+                validateSearch.setEnabled(true);
                 Log.e("TAG", e.getMessage());
             }
 
             @Override
             public void onComplete(){
+                validateSearch.setEnabled(true);
                 Log.e("TAG","Completed");
             }
         });
@@ -219,12 +233,21 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         sectionsChecked = sectionsChecked.deleteCharAt(sectionsChecked.length()-1);
         String finalSections = sectionsChecked.toString();
 
-        this.disposable = NYTStreams.streamSearchArticlesWhitoutDate(inputTerms, finalSections)
+        NYTStreams.streamSearchArticlesWhitoutDate(inputTerms, finalSections)
                 .subscribeWith(new DisposableObserver<SearchArticlesMain>(){
 
             @Override
             public void onNext(SearchArticlesMain searchArticlesMain){
                 if(searchArticlesMain.getResponse().getDocs().isEmpty()){
+                    AlertDialog.Builder popUp = new AlertDialog.Builder(SearchActivity.this);
+                    popUp.setTitle("Sorry")
+                            .setMessage("No result found ! ")
+                            .setNeutralButton("Retry", new DialogInterface.OnClickListener(){
+                                public void onClick(DialogInterface dialog, int which){
+                                    validateSearch.setEnabled(true);
+                                }
+                            })
+                            .show();
                     Log.e("TAG", "Empty");
                 }
                 else{
