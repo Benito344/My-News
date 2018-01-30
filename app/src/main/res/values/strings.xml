@@ -5,6 +5,7 @@
     <string name="toolbar_help">Help</string>
     <string name="toolbar_about">About</string>
     <string name="edit_box_hint">Search query term</string>
+    <string name="contentDescription_image">Picture of article</string>
 
     <!-- Check Box -->
     <string name="cb_Arts">Arts</string>

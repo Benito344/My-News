@@ -6,12 +6,17 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_nyt"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Controllers.Activities.MainActivity">
+
+        <receiver
+            android:name=".utils.AlarmReceiver"
+            android:exported= "true"/>
+
+        <activity android:name=".controllers.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -20,32 +25,32 @@
         </activity>
 
         <activity
-            android:name=".Controllers.Activities.SearchActivity"
+            android:name=".controllers.activities.SearchActivity"
             android:label="Search Articles"
-            android:parentActivityName=".Controllers.Activities.MainActivity">
+            android:parentActivityName=".controllers.activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Controllers.Activities.MainActivity"/>
+                android:value=".controllers.activities.MainActivity"/>
         </activity>
 
         <activity
-            android:name=".Controllers.Activities.NotificationActivity"
+            android:name=".controllers.activities.NotificationActivity"
             android:label="Notifications"
-            android:parentActivityName=".Controllers.Activities.MainActivity">
+            android:parentActivityName=".controllers.activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Controllers.Activities.MainActivity"/>
+                android:value=".controllers.activities.MainActivity"/>
         </activity>
 
-        <activity android:name=".Controllers.Activities.WebViewActivity">
+        <activity android:name=".controllers.activities.WebViewActivity">
         </activity>
 
-        <activity android:name=".Controllers.Activities.SearchResultsActivity"
+        <activity android:name=".controllers.activities.SearchResultsActivity"
                   android:label="Search Articles"
-                  android:parentActivityName=".Controllers.Activities.SearchActivity">
+                  android:parentActivityName=".controllers.activities.SearchActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Controllers.Activities.SearchActivity"/>
+                android:value=".controllers.activities.SearchActivity"/>
         </activity>
     </application>
 

@@ -8,13 +8,13 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
-    tools:context="com.behague.benjamin.mynews.Controllers.Activities.MainActivity">
+    tools:context="com.behague.benjamin.mynews.controllers.activities.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="com.behague.benjamin.mynews.Controllers.Activities.MainActivity">
+        tools:context="com.behague.benjamin.mynews.controllers.activities.MainActivity">
 
         <include
             layout="@layout/toolbar"
