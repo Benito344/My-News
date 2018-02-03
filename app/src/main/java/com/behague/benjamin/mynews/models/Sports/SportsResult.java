@@ -31,18 +31,6 @@ public class SportsResult {
     @SerializedName("published_date")
     @Expose
     private String publishedDate;
-    @SerializedName("des_facet")
-    @Expose
-    private List<Object> desFacet = null;
-    @SerializedName("org_facet")
-    @Expose
-    private List<Object> orgFacet = null;
-    @SerializedName("per_facet")
-    @Expose
-    private List<Object> perFacet = null;
-    @SerializedName("geo_facet")
-    @Expose
-    private List<Object> geoFacet = null;
     @SerializedName("multimedia")
     @Expose
     private List<SportsMultimedia> multimedia = null;
@@ -101,38 +89,6 @@ public class SportsResult {
 
     public void setPublishedDate(String publishedDate) {
         this.publishedDate = publishedDate;
-    }
-
-    public List<Object> getDesFacet() {
-        return desFacet;
-    }
-
-    public void setDesFacet(List<Object> desFacet) {
-        this.desFacet = desFacet;
-    }
-
-    public List<Object> getOrgFacet() {
-        return orgFacet;
-    }
-
-    public void setOrgFacet(List<Object> orgFacet) {
-        this.orgFacet = orgFacet;
-    }
-
-    public List<Object> getPerFacet() {
-        return perFacet;
-    }
-
-    public void setPerFacet(List<Object> perFacet) {
-        this.perFacet = perFacet;
-    }
-
-    public List<Object> getGeoFacet() {
-        return geoFacet;
-    }
-
-    public void setGeoFacet(List<Object> geoFacet) {
-        this.geoFacet = geoFacet;
     }
 
     public List<SportsMultimedia> getMultimedia() {
