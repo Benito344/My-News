@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.behague.benjamin.mynews.models.Sports.SportsResult;
 import com.behague.benjamin.mynews.R;
+import com.behague.benjamin.mynews.utils.DateTreatment;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 
@@ -60,15 +61,6 @@ public class SportsViewHolder extends RecyclerView.ViewHolder {
         }
 
         this.title.setText(sportsResults.getTitle());
-        this.date.setText(dateTreatement(sportsResults.getPublishedDate()));
+        this.date.setText(DateTreatment.DateTreatement(sportsResults.getPublishedDate()));
     }
-
-    public static String dateTreatement (String date){
-        date = date.substring(0, 10);
-        String[] dateSplit = date.split("-");
-        String finalDate = dateSplit[2] + "/" + dateSplit[1] + "/" + dateSplit[0].substring(2, 4);
-
-        return finalDate;
-    }
-
 }

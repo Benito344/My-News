@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.behague.benjamin.mynews.models.MostPopulars.MostPopularResult;
 import com.behague.benjamin.mynews.R;
+import com.behague.benjamin.mynews.utils.DateTreatment;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 
@@ -40,7 +41,7 @@ public class MostPopularViewHolder extends RecyclerView.ViewHolder {
 
         this.section.setText(mostPopular.getSection());
         this.title.setText(mostPopular.getTitle());
-        this.date.setText(dateTreatement(mostPopular.getPublishedDate()));
+        this.date.setText(DateTreatment.DateTreatement(mostPopular.getPublishedDate()));
 
         if(sizeMediaMetaData>0){
             for(int i =0; i<sizeMediaMetaData; i++){
@@ -53,13 +54,5 @@ public class MostPopularViewHolder extends RecyclerView.ViewHolder {
                 }
             }
         }
-    }
-
-    public static String dateTreatement (String date){
-        date = date.substring(0, 10);
-        String[] dateSplit = date.split("-");
-        String finalDate = dateSplit[2] + "/" + dateSplit[1] + "/" + dateSplit[0].substring(2, 4);
-
-        return finalDate;
     }
 }
