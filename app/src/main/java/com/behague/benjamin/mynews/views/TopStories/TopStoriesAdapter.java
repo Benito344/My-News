@@ -18,11 +18,11 @@ import java.util.List;
 
 public class TopStoriesAdapter extends RecyclerView.Adapter<TopStoriesViewHolder> {
 
-    private List<TopStoriesResult> topStoriesList;
+    public static List<TopStoriesResult> topStoriesList;
     private RequestManager glide;
 
-    public TopStoriesAdapter(List<TopStoriesResult> topStoriesList, RequestManager glide){
-        this.topStoriesList = topStoriesList;
+    public TopStoriesAdapter(List<TopStoriesResult> topStoriesResults, RequestManager glide){
+        topStoriesList = topStoriesResults;
         this.glide = glide;
     }
 
@@ -36,15 +36,15 @@ public class TopStoriesAdapter extends RecyclerView.Adapter<TopStoriesViewHolder
 
     @Override
     public void onBindViewHolder(TopStoriesViewHolder viewHolder, int position){
-        viewHolder.updateDatas(this.topStoriesList.get(position), this.glide);
+        viewHolder.updateDatas(topStoriesList.get(position), this.glide);
     }
 
     @Override
     public int getItemCount(){
-        return this.topStoriesList.size();
+        return topStoriesList.size();
     }
 
-    public String getURL(int position){
-        return this.topStoriesList.get(position).getUrl();
+    public static String getURL(int position){
+        return topStoriesList.get(position).getUrl();
     }
 }

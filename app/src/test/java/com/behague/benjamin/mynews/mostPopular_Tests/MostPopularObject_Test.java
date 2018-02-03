@@ -1,4 +1,4 @@
-package com.behague.benjamin.mynews;
+package com.behague.benjamin.mynews.mostPopular_Tests;
 
 import com.behague.benjamin.mynews.models.MostPopulars.MostPopularMain;
 import com.behague.benjamin.mynews.models.MostPopulars.MostPopularMedia;

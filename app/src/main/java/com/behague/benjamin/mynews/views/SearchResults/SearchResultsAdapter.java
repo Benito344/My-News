@@ -18,11 +18,11 @@ import java.util.List;
 
 public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsViewHolder> {
 
-    private List<SearchArticlesDoc> searchArticlesDocs;
+    public static List<SearchArticlesDoc> searchArticlesDocs;
     private RequestManager glide;
 
     public SearchResultsAdapter(List<SearchArticlesDoc> searchDocs, RequestManager glide) {
-        this.searchArticlesDocs = searchDocs;
+        searchArticlesDocs = searchDocs;
         this.glide = glide;
     }
 
@@ -36,16 +36,16 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsView
 
     @Override
     public void onBindViewHolder(SearchResultsViewHolder viewHolder, int position) {
-        viewHolder.updateDatas(this.searchArticlesDocs.get(position), this.glide);
+        viewHolder.updateDatas(searchArticlesDocs.get(position), this.glide);
     }
 
     @Override
     public int getItemCount() {
-        return this.searchArticlesDocs.size();
+        return searchArticlesDocs.size();
     }
 
-    public String getURL(int position) {
-        return this.searchArticlesDocs.get(position).getWebUrl();
+    public static String getURL(int position) {
+        return searchArticlesDocs.get(position).getWebUrl();
     }
 
 }

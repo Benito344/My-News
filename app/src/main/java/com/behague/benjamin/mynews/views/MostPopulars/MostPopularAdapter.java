@@ -10,7 +10,6 @@ import com.behague.benjamin.mynews.models.MostPopulars.MostPopularResult;
 import com.behague.benjamin.mynews.R;
 import com.bumptech.glide.RequestManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,7 +37,7 @@ public class MostPopularAdapter extends RecyclerView.Adapter<MostPopularViewHold
 
     @Override
     public void onBindViewHolder(MostPopularViewHolder viewHolder, int position){
-        viewHolder.updateDatas(this.mostPopularList.get(position), this.glide);
+        viewHolder.updateDatas(mostPopularList.get(position), this.glide);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.behague.benjamin.mynews;
+package com.behague.benjamin.mynews.search_Tests;
 
 import com.behague.benjamin.mynews.models.SearchArticles.SearchArticlesDoc;
 import com.behague.benjamin.mynews.models.SearchArticles.SearchArticlesHeadline;

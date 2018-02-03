@@ -1,4 +1,4 @@
-package com.behague.benjamin.mynews;
+package com.behague.benjamin.mynews.sports_Tests;
 
 import com.behague.benjamin.mynews.models.Sports.SportsMain;
 import com.behague.benjamin.mynews.models.Sports.SportsMultimedia;

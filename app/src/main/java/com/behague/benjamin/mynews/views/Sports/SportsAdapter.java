@@ -18,11 +18,11 @@ import java.util.List;
 
 public class SportsAdapter extends RecyclerView.Adapter<SportsViewHolder> {
 
-    private List<SportsResult> sportsList;
+    public static List<SportsResult> sportsList;
     private RequestManager glide;
 
-    public SportsAdapter(List<SportsResult> sportsList, RequestManager glide){
-        this.sportsList = sportsList;
+    public SportsAdapter(List<SportsResult> sportsResults, RequestManager glide){
+        sportsList = sportsResults;
         this.glide = glide;
     }
 
@@ -36,15 +36,15 @@ public class SportsAdapter extends RecyclerView.Adapter<SportsViewHolder> {
 
     @Override
     public void onBindViewHolder(SportsViewHolder viewHolder, int position){
-        viewHolder.updateDatas(this.sportsList.get(position), this.glide);
+        viewHolder.updateDatas(sportsList.get(position), this.glide);
     }
 
     @Override
     public int getItemCount(){
-        return this.sportsList.size();
+        return sportsList.size();
     }
 
-    public String getURL(int position){
-        return this.sportsList.get(position).getUrl();
+    public static String getURL(int position){
+        return sportsList.get(position).getUrl();
     }
 }
