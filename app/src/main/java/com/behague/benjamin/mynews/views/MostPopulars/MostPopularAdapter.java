@@ -10,6 +10,7 @@ import com.behague.benjamin.mynews.models.MostPopulars.MostPopularResult;
 import com.behague.benjamin.mynews.R;
 import com.bumptech.glide.RequestManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,11 +19,11 @@ import java.util.List;
 
 public class MostPopularAdapter extends RecyclerView.Adapter<MostPopularViewHolder>{
 
-    private List<MostPopularResult> mostPopularList;
+    public static List<MostPopularResult> mostPopularList;
     private RequestManager glide;
 
     public MostPopularAdapter(List<MostPopularResult> mostPopularResult, RequestManager glide){
-        this.mostPopularList = mostPopularResult;
+        mostPopularList = mostPopularResult;
         this.glide = glide;
     }
 
@@ -45,7 +46,7 @@ public class MostPopularAdapter extends RecyclerView.Adapter<MostPopularViewHold
         return mostPopularList.size();
     }
 
-    public String getUrl (int position){
-        return this.mostPopularList.get(position).getUrl();
+    public static String getUrl (int position){
+        return mostPopularList.get(position).getUrl();
     }
 }

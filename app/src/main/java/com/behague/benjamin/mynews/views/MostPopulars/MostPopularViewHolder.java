@@ -55,7 +55,7 @@ public class MostPopularViewHolder extends RecyclerView.ViewHolder {
         }
     }
 
-    private String dateTreatement (String date){
+    public static String dateTreatement (String date){
         date = date.substring(0, 10);
         String[] dateSplit = date.split("-");
         String finalDate = dateSplit[2] + "/" + dateSplit[1] + "/" + dateSplit[0].substring(2, 4);
