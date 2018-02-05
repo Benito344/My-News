@@ -64,6 +64,7 @@ public class TopStoriesFragment extends Fragment {
         this.disposeWhenDestroy();
     }
 
+    //It for initialize RecyclerView
     private void initRecyclerView(){
         this.topStoriesResults = new ArrayList<>();
         this.topStorieAdapter = new TopStoriesAdapter(this.topStoriesResults, Glide.with(this));
@@ -71,6 +72,7 @@ public class TopStoriesFragment extends Fragment {
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
+    //It used for execute HTTP request and get results
     private void executeHttpRequest(){
         this.disposable = NYTStreams.streamTopStories().subscribeWith(new DisposableObserver<TopStoriesMain>() {
 
@@ -92,6 +94,7 @@ public class TopStoriesFragment extends Fragment {
         });
     }
 
+    //It used when user clicked on item in recycler view
     private void configureOnClickRecyclerView(){
         ItemClickRecyclerView.addTo(recyclerView, R.layout.fragment_top_stories)
                 .setOnItemClickListener(new ItemClickRecyclerView.OnItemClickListener(){
@@ -105,11 +108,13 @@ public class TopStoriesFragment extends Fragment {
                 });
     }
 
+    //Dispose subscription
     private void disposeWhenDestroy(){
 
         if (this.disposable != null && !this.disposable.isDisposed()) this.disposable.dispose();
     }
 
+    //It for notify RecyclerView when Http request return results
     private void updateList(){
         topStorieAdapter.notifyDataSetChanged();
     }

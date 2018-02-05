@@ -40,7 +40,7 @@ public class MostPopularFragment extends Fragment {
 
     private MostPopularAdapter mostPopularAdapter;
 
-    private List<MostPopularResult> mostPopularResults;
+    public List<MostPopularResult> mostPopularResults;
 
     public static MostPopularFragment newInstance() {
         return (new MostPopularFragment());
@@ -57,6 +57,7 @@ public class MostPopularFragment extends Fragment {
         return view;
     }
 
+    //It for initialize RecyclerView
     private void initRecyclerView(){
         this.mostPopularResults = new ArrayList<>();
         this.mostPopularAdapter = new MostPopularAdapter(this.mostPopularResults, Glide.with(this));
@@ -64,7 +65,8 @@ public class MostPopularFragment extends Fragment {
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
-    private void executeHttpRequest(){
+    //It used for execute HTTP request and get results
+    public void executeHttpRequest(){
         this.disposable = NYTStreams.streamMostPopular().subscribeWith(new DisposableObserver<MostPopularMain>(){
 
             @Override
@@ -85,6 +87,7 @@ public class MostPopularFragment extends Fragment {
         });
     }
 
+    //It used when user clicked on item in recycler view
     private void configureOnClickRecyclerView(){
         ItemClickRecyclerView.addTo(recyclerView, R.layout.fragment_top_stories)
                 .setOnItemClickListener(new ItemClickRecyclerView.OnItemClickListener(){
@@ -104,10 +107,12 @@ public class MostPopularFragment extends Fragment {
         this.disposeWhenDestroy();
     }
 
+    //Dispose subscription
     private void disposeWhenDestroy(){
         if (this.disposable != null && !this.disposable.isDisposed()) this.disposable.dispose();
     }
 
+    //It for notify RecyclerView when Http request return results
     private void updateList(){
         mostPopularAdapter.notifyDataSetChanged();
     }

@@ -21,11 +21,13 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsView
     public static List<SearchArticlesDoc> searchArticlesDocs;
     private RequestManager glide;
 
+    //Constructor
     public SearchResultsAdapter(List<SearchArticlesDoc> searchDocs, RequestManager glide) {
         searchArticlesDocs = searchDocs;
         this.glide = glide;
     }
 
+    //Create view holder and inflating its xml layout
     @Override
     public SearchResultsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
@@ -34,16 +36,19 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsView
         return new SearchResultsViewHolder(v);
     }
 
+    //Update user view
     @Override
     public void onBindViewHolder(SearchResultsViewHolder viewHolder, int position) {
         viewHolder.updateDatas(searchArticlesDocs.get(position), this.glide);
     }
 
+    //Return the total count of items in list
     @Override
     public int getItemCount() {
         return searchArticlesDocs.size();
     }
 
+    //Return URL of an article
     public static String getURL(int position) {
         return searchArticlesDocs.get(position).getWebUrl();
     }

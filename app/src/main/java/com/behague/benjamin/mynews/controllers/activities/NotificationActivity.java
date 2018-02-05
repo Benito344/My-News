@@ -63,12 +63,14 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
         sports.setOnClickListener(this);
         travels.setOnClickListener(this);
 
+        //Configure layout
         this.configureToolbar();
         this.initUI();
         this.configureAlarmManager();
 
         terms.addTextChangedListener(textWatched);
 
+        //Check informations when user checked switch
         switchNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,6 +109,7 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
         });
     }
 
+    //Enable notification
     private void enableNotification() {
         AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
@@ -120,6 +123,7 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
+    //Disable notification
     private void disableNotification() {
         AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         if(manager != null){
@@ -147,6 +151,7 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
+    //Initialize UI for retrieve user input
     public void initUI(){
 
         if(notifParams.getBoolean(KEY_SWITCH_STATE, false)){
@@ -200,6 +205,7 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
         public void afterTextChanged(Editable s) {}
     };
 
+    //Used for get section checked
     @Override
     public void onClick(View v){
         if(switchNotification.isChecked() && v.getClass().getName().equals("android.support.v7.widget.AppCompatCheckBox")){
@@ -222,6 +228,7 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
+    //Used when user unchecked section
     public static String removeSection(String[] input, String deleteMe) {
 
         StringBuilder result = new StringBuilder();

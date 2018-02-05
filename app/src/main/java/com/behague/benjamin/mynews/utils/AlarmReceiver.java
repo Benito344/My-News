@@ -28,6 +28,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     private Context context;
 
+    //It for receive alarm
     @Override
     public void onReceive(Context context, Intent intent){
         final String PARAMS = "PARAMS";
@@ -37,6 +38,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         this.executeHttpRequest();
     }
 
+    //It fir execute Http request
     public void executeHttpRequest(){
         final String KEY_SECTION_CHECKED = "KEY_SECTION_CHECKED";
         String inputTerms = notifParams.getString(KEY_TERMS,"");
@@ -68,6 +70,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 });
     }
 
+    //It for display notification
     public void callNotification(){
         String NOTIFICATION_CHANNEL_ID = "1993";
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

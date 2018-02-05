@@ -10,18 +10,18 @@ import com.behague.benjamin.mynews.R;
 
 public class WebViewActivity extends AppCompatActivity {
 
-    private WebView webView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
 
+        WebView webView;
         webView = findViewById(R.id.webview_activity_WV);
 
         Intent intent = getIntent();
         webView.getSettings().setJavaScriptEnabled(true);
 
+        //It for display navigator in application
         webView.setWebViewClient(new WebViewClient() {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);

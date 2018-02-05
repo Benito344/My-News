@@ -1,6 +1,7 @@
 package com.behague.benjamin.mynews.controllers.activities;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
@@ -20,7 +21,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
-    private NavigationView navigationView;
     private ViewPager viewPager;
 
     @Override
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Call each method for UI configuring
         this.configureToolbar();
         this.configureDrawerLayout();
         this.configureViewPagerAndTabs();
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
     }
 
+    //Configure Drawer Layout
     private void configureDrawerLayout(){
         this.drawerLayout = findViewById(R.id.activity_main_drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -58,26 +60,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void configureViewPagerAndTabs(){
-        //Get ViewPager from layout
+        // Get ViewPager from layout
         ViewPager pager = findViewById(R.id.activity_main_viewpager);
-        //Set Adapter PageAdapter and glue it together
+        // Set Adapter PageAdapter and glue it together
         pager.setAdapter(new PageAdapter(getSupportFragmentManager()));
-        // 1 - Get TabLayout from layout
+        // Get TabLayout from layout
         TabLayout tabs = findViewById(R.id.activity_main_tabs);
-        // 2 - Glue TabLayout and ViewPager together
+        // Glue TabLayout and ViewPager together
         tabs.setupWithViewPager(pager);
-        // 3 - Design purpose. Tabs have the same width
+        // Design purpose. Tabs have the same width
         tabs.setTabMode(TabLayout.MODE_FIXED);
     }
 
     private void configureNavigationView(){
-        this.navigationView = findViewById(R.id.activity_main_nav_view);
+        NavigationView navigationView ;
+
+        navigationView = findViewById(R.id.activity_main_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //3 - Handle actions on menu items
+        // Handle actions on menu items
         switch (item.getItemId()) {
             case R.id.menu_search:
                 launchSearchActivity();
@@ -93,11 +97,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         int newItem ;
         int id = item.getItemId();
 
+        //Show fragment after user clicked on a menu item
         switch (id){
             case R.id.activity_main_drawer_topstories:
                 newItem = 0;
@@ -126,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        // 5 - Handle back click to close menu
+        // Handle back click to close menu
         if (this.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             this.drawerLayout.closeDrawer(GravityCompat.START);
         } else {

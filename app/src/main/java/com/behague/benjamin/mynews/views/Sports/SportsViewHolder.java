@@ -18,6 +18,7 @@ import butterknife.ButterKnife;
  * Created by Benjamin BEHAGUE on 18/01/2018.
  */
 
+//This class is for model into a JAVA object the previous XML view created
 public class SportsViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.top_stories_item_title)
@@ -29,12 +30,13 @@ public class SportsViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.top_stories_item_image)
     ImageView image;
 
-
+    //Layout constructor
     public SportsViewHolder(View v){
         super(v);
         ButterKnife.bind(this, v);
     }
 
+    //It for get elements of an article and set it UI
     public void updateDatas (SportsResult sportsResults, RequestManager glide){
 
         final int heightImage = 75;

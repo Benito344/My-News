@@ -18,6 +18,7 @@ import butterknife.ButterKnife;
  * Created by Benjamin BEHAGUE on 18/01/2018.
  */
 
+//This class is for model into a JAVA object the previous XML view created
 public class MostPopularViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.top_stories_item_title)
     TextView title;
@@ -28,11 +29,13 @@ public class MostPopularViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.top_stories_item_image)
     ImageView image;
 
+    //Layout constructor
     public MostPopularViewHolder(View v){
         super(v);
         ButterKnife.bind(this, v);
     }
 
+    //It for get elements of an article and set it UI
     public void updateDatas(MostPopularResult mostPopular, RequestManager glide){
 
         int sizeMediaMetaData = mostPopular.getMedia().get(0).getMediaMetadata().size();

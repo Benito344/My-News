@@ -60,8 +60,10 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         beginDate.setOnClickListener(this);
         endDate.setOnClickListener(this);
 
+        //Configure layout
         this.configureToolbar();
 
+        //Check user informations when user clicked on search button
         validateSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,6 +116,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    //Used for user click on date picker dialog
     @Override
     public void onClick(View v) {
         if(v == beginDate) {
@@ -123,6 +126,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    //It used for display Date picker dialog for begin date
     public void beginDatePickerDialog (){
         // Get Current Date
         final Calendar c = Calendar.getInstance();
@@ -152,6 +156,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         datePickerDialog.show();
     }
 
+    //It used for display Date picker dialog for end date
     public void endDatePickerDialog (){
         // Get Current Date
         final Calendar c = Calendar.getInstance();
@@ -183,6 +188,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         datePickerDialog.show();
     }
 
+    //It used for execute HTTP request when user input date and get the results
     private void executeHttpRequest(){
 
         sectionsChecked = sectionsChecked.deleteCharAt(sectionsChecked.length()-1);
@@ -228,6 +234,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         });
     }
 
+    //It used for execute HTTP request when user doesn't input date and get results
     private void executeHttpRequestWithoutDate(){
 
         sectionsChecked = sectionsChecked.deleteCharAt(sectionsChecked.length()-1);

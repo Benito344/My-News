@@ -21,11 +21,13 @@ public class MostPopularAdapter extends RecyclerView.Adapter<MostPopularViewHold
     public static List<MostPopularResult> mostPopularList;
     private RequestManager glide;
 
+    //Constructor
     public MostPopularAdapter(List<MostPopularResult> mostPopularResult, RequestManager glide){
         mostPopularList = mostPopularResult;
         this.glide = glide;
     }
 
+    //Create view holder and inflating its xml layout
     @Override
     public MostPopularViewHolder onCreateViewHolder(ViewGroup parent, int viewTtype){
         Context context = parent.getContext();
@@ -35,16 +37,19 @@ public class MostPopularAdapter extends RecyclerView.Adapter<MostPopularViewHold
         return new MostPopularViewHolder(v);
     }
 
+    //Update user view
     @Override
     public void onBindViewHolder(MostPopularViewHolder viewHolder, int position){
         viewHolder.updateDatas(mostPopularList.get(position), this.glide);
     }
 
+    //Return the total count of items in list
     @Override
     public int getItemCount(){
         return mostPopularList.size();
     }
 
+    //Return URL of an article
     public static String getUrl (int position){
         return mostPopularList.get(position).getUrl();
     }

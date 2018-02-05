@@ -29,6 +29,8 @@ public class SearchResultsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_results);
         ButterKnife.bind(this);
+
+        //Configure UI layout
         this.configureToolbar();
         this.initRecyclerView();
         this.configureOnClickRecyclerView();
@@ -47,12 +49,14 @@ public class SearchResultsActivity extends AppCompatActivity {
         }
     }
 
+    //It for initialize RecyclerView
     public void initRecyclerView(){
         this.searchResultsAdapter = new SearchResultsAdapter(SearchActivity.searchArticlesDoc, Glide.with(this));
         this.recyclerView.setAdapter(this.searchResultsAdapter);
         this.recyclerView.setLayoutManager(new LinearLayoutManager(SearchResultsActivity.this));
     }
 
+    //It used when user click on item in recyclerview
     private void configureOnClickRecyclerView(){
         ItemClickRecyclerView.addTo(recyclerView, R.layout.fragment_top_stories)
                 .setOnItemClickListener(new ItemClickRecyclerView.OnItemClickListener(){

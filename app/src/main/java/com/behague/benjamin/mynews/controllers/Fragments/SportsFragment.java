@@ -57,6 +57,7 @@ public class SportsFragment extends Fragment {
         return view;
     }
 
+    //It for initialize RecyclerView
     private void initRecyclerView(){
         this.sportsResults = new ArrayList<>();
         this.sportsAdapter = new SportsAdapter(this.sportsResults, Glide.with(this));
@@ -70,6 +71,7 @@ public class SportsFragment extends Fragment {
         this.disposeWhenDestroy();
     }
 
+    //It used for execute HTTP request and get results
     private void executeHttpRequest(){
         this.disposable = NYTStreams.streamSports().subscribeWith(new DisposableObserver<SportsMain>() {
 
@@ -91,6 +93,7 @@ public class SportsFragment extends Fragment {
         });
     }
 
+    //It used when user clicked on item in recycler view
     private void configureOnClickRecyclerView(){
         ItemClickRecyclerView.addTo(recyclerView, R.layout.fragment_top_stories)
                 .setOnItemClickListener(new ItemClickRecyclerView.OnItemClickListener(){
@@ -104,10 +107,12 @@ public class SportsFragment extends Fragment {
                 });
     }
 
+    //Dispose subscription
     private void disposeWhenDestroy(){
         if (this.disposable != null && !this.disposable.isDisposed()) this.disposable.dispose();
     }
 
+    //It for notify RecyclerView when Http request return results
     private void updateList(){
         sportsAdapter.notifyDataSetChanged();
     }

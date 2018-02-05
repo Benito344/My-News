@@ -21,11 +21,13 @@ public class TopStoriesAdapter extends RecyclerView.Adapter<TopStoriesViewHolder
     public static List<TopStoriesResult> topStoriesList;
     private RequestManager glide;
 
+    //Constructor
     public TopStoriesAdapter(List<TopStoriesResult> topStoriesResults, RequestManager glide){
         topStoriesList = topStoriesResults;
         this.glide = glide;
     }
 
+    //Create view holder and inflating its xml layout
     @Override
     public TopStoriesViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         Context context = parent.getContext();
@@ -34,16 +36,19 @@ public class TopStoriesAdapter extends RecyclerView.Adapter<TopStoriesViewHolder
         return new TopStoriesViewHolder(v);
     }
 
+    //Update user view
     @Override
     public void onBindViewHolder(TopStoriesViewHolder viewHolder, int position){
         viewHolder.updateDatas(topStoriesList.get(position), this.glide);
     }
 
+    //Return the total count of items in list
     @Override
     public int getItemCount(){
         return topStoriesList.size();
     }
 
+    //Return URL of an article
     public static String getURL(int position){
         return topStoriesList.get(position).getUrl();
     }

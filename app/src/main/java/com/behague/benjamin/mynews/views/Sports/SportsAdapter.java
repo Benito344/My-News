@@ -21,11 +21,13 @@ public class SportsAdapter extends RecyclerView.Adapter<SportsViewHolder> {
     public static List<SportsResult> sportsList;
     private RequestManager glide;
 
+    //Constructor
     public SportsAdapter(List<SportsResult> sportsResults, RequestManager glide){
         sportsList = sportsResults;
         this.glide = glide;
     }
 
+    //Create view holder and inflating its xml layout
     @Override
     public SportsViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         Context context = parent.getContext();
@@ -34,16 +36,19 @@ public class SportsAdapter extends RecyclerView.Adapter<SportsViewHolder> {
         return new SportsViewHolder(v);
     }
 
+    //Update user view
     @Override
     public void onBindViewHolder(SportsViewHolder viewHolder, int position){
         viewHolder.updateDatas(sportsList.get(position), this.glide);
     }
 
+    //Return the total count of items in list
     @Override
     public int getItemCount(){
         return sportsList.size();
     }
 
+    //Return URL of an article
     public static String getURL(int position){
         return sportsList.get(position).getUrl();
     }
