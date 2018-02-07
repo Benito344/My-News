@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.behague.benjamin.mynews.R;
 import com.behague.benjamin.mynews.utils.AlarmReceiver;
+import com.behague.benjamin.mynews.utils.RemovedSection;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -131,7 +132,7 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
             Toast.makeText(this, "Notification canceled", Toast.LENGTH_SHORT).show();
         }
         else{
-            switchNotification.setChecked(false);
+            switchNotification.setChecked(true);
             Toast.makeText(this,"Please retry" , Toast.LENGTH_SHORT).show();
         }
 
@@ -217,7 +218,7 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
                     String sections = notifParams.getString(KEY_SECTION_CHECKED,"");
                     if(sections.contains(",")){
                         String [] removedSection = sections.split(",");
-                        String newSection = removeSection(removedSection,((CheckBox) v).getText().toString());
+                        String newSection = RemovedSection.removeSection(removedSection,((CheckBox) v).getText().toString());
                         notifParams.edit().putString(KEY_SECTION_CHECKED, newSection).apply();
                     }
                     else{
@@ -228,19 +229,4 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
-    //Used when user unchecked section
-    public static String removeSection(String[] input, String deleteMe) {
-
-        StringBuilder result = new StringBuilder();
-
-        for(String item : input){
-            if(!deleteMe.equals(item)){
-                result.append(item + ",");
-            }
-        }
-
-        result.deleteCharAt(result.length()-1);
-
-        return result.toString();
-    }
 }
