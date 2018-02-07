@@ -7,6 +7,9 @@
     <string name="edit_box_hint">Search query term</string>
     <string name="contentDescription_image">Picture of article</string>
 
+    <!-- EditText -->
+    <string name="term">Search query term</string>
+
     <!-- Check Box -->
     <string name="cb_Arts">Arts</string>
     <string name="cb_Business">Business</string>
