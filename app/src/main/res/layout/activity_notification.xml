@@ -22,12 +22,14 @@
         android:layout_below="@id/activity_edit_box_sn"
         android:layout_alignStart="@id/activity_edit_box_sn"
         android:layout_alignEnd="@id/activity_edit_box_sn"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:baselineAligned="false">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_weight="1"
+            android:paddingStart="0dp"
             android:paddingEnd="10dp">
 
             <include
@@ -40,7 +42,8 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_weight="1"
-            android:paddingStart="10dp">
+            android:paddingStart="10dp"
+            android:paddingEnd="0dp">
 
             <include
                 layout="@layout/checkbox_right"/>
@@ -60,7 +63,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enable notifications (Once per day)"
+        android:text="@string/enable_notification"
         android:layout_below="@id/line_separator"
         android:layout_marginTop="10dp"
         android:layout_alignStart="@id/linearLayout_Search"/>
