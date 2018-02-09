@@ -97,7 +97,7 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
 
                         notifParams.edit().putBoolean(KEY_SWITCH_STATE, true)
                                             .putString(KEY_SECTION_CHECKED, sectionsChecked.toString())
-                                            .putString(KEY_TERMS, terms.getText().toString())
+                                            .putString(KEY_TERMS, inputTerms)
                                             .apply();
                         enableNotification();
                     }

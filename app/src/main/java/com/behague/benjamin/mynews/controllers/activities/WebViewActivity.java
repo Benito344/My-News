@@ -19,7 +19,6 @@ public class WebViewActivity extends AppCompatActivity {
         webView = findViewById(R.id.webview_activity_WV);
 
         Intent intent = getIntent();
-        webView.getSettings().setJavaScriptEnabled(true);
 
         //It for display navigator in application
         webView.setWebViewClient(new WebViewClient() {

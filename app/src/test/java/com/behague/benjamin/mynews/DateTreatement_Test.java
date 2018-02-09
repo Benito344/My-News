@@ -25,5 +25,4 @@ public class DateTreatement_Test {
         date_result = DateTreatment.DateTreatement(date);
         assertEquals(date_Expected, date_result);
     }
-
 }

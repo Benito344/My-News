@@ -13,6 +13,9 @@
     <!-- EditText -->
     <string name="term">Search query term</string>
 
+    <!-- ImageView -->
+    <string name="header_description_drawer">Logo New York Times</string>
+
     <!-- Check Box -->
     <string name="cb_Arts">Arts</string>
     <string name="cb_Business">Business</string>
