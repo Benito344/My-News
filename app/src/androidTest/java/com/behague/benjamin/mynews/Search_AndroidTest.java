@@ -26,7 +26,7 @@ import static org.junit.Assert.assertNull;
 public class Search_AndroidTest {
 
     @Test
-    public void getUrlWithDate_Test() throws Exception{
+    public void getResultsWithDate_Test() throws Exception{
         Observable<SearchArticlesMain> observableResult = NYTStreams.streamSearchArticles("Trump","20171101",
                                                                                             "20180131","Poilitics");
         TestObserver<SearchArticlesMain> testObserver = new TestObserver<>();
@@ -38,7 +38,7 @@ public class Search_AndroidTest {
 
         List<SearchArticlesDoc> searchResult = testObserver.values().get(0).getResponse().getDocs();
 
-        assertNotNull(searchResult.get(0).getWebUrl());
+        assertNotNull(searchResult);
     }
 
     @Test
@@ -65,7 +65,7 @@ public class Search_AndroidTest {
     }
 
     @Test
-    public void getUrlWithoutDate_Test() throws Exception{
+    public void getResultsWithoutDate_Test() throws Exception{
         Observable<SearchArticlesMain> observableResult = NYTStreams.streamSearchArticlesWhitoutDate("Trump","Poilitics");
         TestObserver<SearchArticlesMain> testObserver = new TestObserver<>();
 
@@ -76,7 +76,7 @@ public class Search_AndroidTest {
 
         List<SearchArticlesDoc> searchResult = testObserver.values().get(0).getResponse().getDocs();
 
-        assertNotNull(searchResult.get(0).getWebUrl());
+        assertNotNull(searchResult);
     }
 
     @Test
