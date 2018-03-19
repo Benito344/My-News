@@ -218,18 +218,17 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                     Intent searchResultsActivity = new Intent(SearchActivity.this, SearchResultsActivity.class);
                     startActivity(searchResultsActivity);
                     }
+                    validateSearch.setEnabled(true);
             }
 
             @Override
             public void onError(Throwable e){
                 validateSearch.setEnabled(true);
-                Log.e("TAG", e.getMessage());
             }
 
             @Override
             public void onComplete(){
                 validateSearch.setEnabled(true);
-                Log.e("TAG","Completed");
             }
         });
     }
@@ -255,23 +254,23 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                                 }
                             })
                             .show();
-                    Log.e("TAG", "Empty");
                 }
                 else{
                     searchArticlesDoc.addAll(searchArticlesMain.getResponse().getDocs());
                     Intent searchResultsActivity = new Intent(SearchActivity.this, SearchResultsActivity.class);
                     startActivity(searchResultsActivity);
                 }
+                validateSearch.setEnabled(true);
             }
 
             @Override
             public void onError(Throwable e){
-                Log.e("TAG", e.getMessage());
+                validateSearch.setEnabled(true);
             }
 
             @Override
             public void onComplete(){
-                Log.e("TAG","Completed");
+                validateSearch.setEnabled(true);
             }
         });
     }
